@@ -10,4 +10,5 @@ public class Calculator {
     public void setLevel(String level) {
         this.level = level;
     }
+
 }
