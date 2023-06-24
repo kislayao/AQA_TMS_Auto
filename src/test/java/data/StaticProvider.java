@@ -14,4 +14,15 @@ public class StaticProvider {
                 {-1, 2, 1}
         };
     }
+
+    @DataProvider(name = "Data for div INT test", parallel = true)
+    public static Object[][] dataForDivIntTest() {
+        return new Object[][]{
+                {-2, -1, 2},
+                {5, 5, 1},
+                {6, -2, -3},
+                {0, 2, 0}
+        };
+    }
+
 }
