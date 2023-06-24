@@ -22,7 +22,7 @@ public class CalculatorTest_Div_Int extends BaseTest{
         Assert.assertTrue(false);
     }
 
-    @Test(invocationCount = 3, invocationTimeOut = 200, threadPoolSize = 3, dependsOnMethods = "exceptionTestDiv",
+    @Test(invocationCount = 3, invocationTimeOut = 200, threadPoolSize = 3, dependsOnMethods = "dataProviderTest_DivInt",
     groups = "smoke")
     public void invocationCountTestDiv() throws InterruptedException {
         Thread.sleep(500);
@@ -44,8 +44,7 @@ public class CalculatorTest_Div_Int extends BaseTest{
         Assert.assertEquals(actualValue, expectedValue, "Values don't match");
     }
 
-    @Test (dataProvider = "Data for div INT test", dataProviderClass = StaticProvider.class, threadPoolSize = 4,
-            groups = "smoke")
+    @Test (groups = "smoke", dataProvider = "Data for div INT test", dataProviderClass = StaticProvider.class, threadPoolSize = 4)
     public void dataProviderTest_DivInt(int a, int b, int expectedResult) throws InterruptedException {
         Thread.sleep(1000);
         Assert.assertEquals(calculator.div(a,b), expectedResult, "Values don't match");

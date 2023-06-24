@@ -11,48 +11,48 @@ public class BaseTest {
         calculator.setLevel(this.getClass().toString());
     }
 
-    @BeforeGroups
-    public void beforeGroups() {
-        System.out.println("BeforeGroups: ...");
-    }
-
-    @BeforeTest
-    public void beforeTest() {
-        System.out.println("BeforeTest: ...");
-    }
-
-    @BeforeMethod
-    public void beforeMethod() {
-        System.out.println("BeforeMethod: ...");
-    }
-
-    @BeforeSuite
-    public void beforeSuite() {
-        System.out.println("BeforeSuite: ...");
-    }
-
-    @AfterClass
-    public void afterClass() {
-        System.out.println("AfterClass: ...");
-    }
-
-    @AfterGroups
-    public void afterGroups() {
-        System.out.println("AfterGroups: ...");
-    }
-
-    @AfterTest
-    public void afterTest() {
-        System.out.println("AfterTest: ...");
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        System.out.println("AfterMethod: ...");
-    }
-
-    @AfterSuite
-    public void afterSuite() {
-        System.out.println("AfterSuite: ...");
-    }
+//    @BeforeGroups
+//    public void beforeGroups() {
+//        System.out.println("BeforeGroups: ...");
+//    }
+//
+//    @BeforeTest
+//    public void beforeTest() {
+//        System.out.println("BeforeTest: ...");
+//    }
+//
+//    @BeforeMethod
+//    public void beforeMethod() {
+//        System.out.println("BeforeMethod: ...");
+//    }
+//
+//    @BeforeSuite
+//    public void beforeSuite() {
+//        System.out.println("BeforeSuite: ...");
+//    }
+//
+//    @AfterClass
+//    public void afterClass() {
+//        System.out.println("AfterClass: ...");
+//    }
+//
+//    @AfterGroups
+//    public void afterGroups() {
+//        System.out.println("AfterGroups: ...");
+//    }
+//
+//    @AfterTest
+//    public void afterTest() {
+//        System.out.println("AfterTest: ...");
+//    }
+//
+//    @AfterMethod
+//    public void afterMethod() {
+//        System.out.println("AfterMethod: ...");
+//    }
+//
+//    @AfterSuite
+//    public void afterSuite() {
+//        System.out.println("AfterSuite: ...");
+//    }
 }

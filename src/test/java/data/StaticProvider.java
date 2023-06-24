@@ -11,7 +11,7 @@ public class StaticProvider {
                 {-2, -3, -5},
                 {0, 0, 0},
                 {2, 3, 5},
-                {-1, 2, 1}
+                {-1, 2, 1},
         };
     }
 
@@ -21,7 +21,19 @@ public class StaticProvider {
                 {-2, -1, 2},
                 {5, 5, 1},
                 {6, -2, -3},
-                {0, 2, 0}
+                {0, 2, 0},
+                {1, 4, 0}
+        };
+    }
+
+    @DataProvider(name = "Data for div DOUBLE test", parallel = true)
+    public static Object[][] dataForDivDoubleTest() {
+        return new Object[][]{
+                {-2.2, -1.1, 2},
+                {5.5, 5.5, 1},
+                {6.3, -3, -2.1},
+                {0.0, 2.2, 0},
+                {1.0, 4.0, 0.25}
         };
     }
 

@@ -3,18 +3,18 @@
 <suite name="Div INT Suite">
     <test name="All test">
         <groups>
-            <define name="Group 1">
+            <define name="Group S">
                 <include name="smoke"/>
             </define>
-            <define name="Group 2">
+            <define name="Group R">
                 <include name="regression"/>
             </define>
-            <define name="Group 3">
+            <define name="Group SR">
                 <include name="smoke"/>
                 <include name="regression"/>
             </define>
             <run>
-                <include name="Group 1"/>
+                <include name="Group S"/>
             </run>
         </groups>
         <classes>
