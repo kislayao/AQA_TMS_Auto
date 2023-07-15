@@ -19,6 +19,13 @@ public class ReadProperties {
         return properties.getProperty("url");
     }
 
+    public static String getUrlHW() {
+        return properties.getProperty("urlHW");
+    }
+    public static String getUrlHW2() {
+        return properties.getProperty("urlHW2");
+    }
+
     public static String browserName() {
         return properties.getProperty("browser");
     }
