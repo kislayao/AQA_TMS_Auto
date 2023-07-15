@@ -24,7 +24,7 @@ public class CSSSelectorsTest {
 
     @Test
     public void cssSelectorsTest(){
-        driver.get("file:\\Users\\olyad\\IdeaProjects\\AQA_TMS_Auto\\src\\test\\resources\\index.html");
+        driver.get("file:\\C:\\Users\\olyad\\IdeaProjects\\AQA_TMS_Auto\\src\\test\\resources\\index.html");
         // Поиск по id
         Assert.assertTrue(driver.findElement(By.cssSelector("#my-Address")).isDisplayed());
         //   аналог
