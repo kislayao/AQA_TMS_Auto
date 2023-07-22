@@ -27,9 +27,7 @@ public class JSTests extends BaseTest {
         WebElement target = driver.findElement(By.id("column-b"));
 
         Thread.sleep(3000);
-
         DragAndDropJS(source, target, driver);
-
         Thread.sleep(3000);
     }
 
