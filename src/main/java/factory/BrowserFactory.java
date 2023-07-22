@@ -19,7 +19,8 @@ public class BrowserFactory {
         switch (ReadProperties.browserName().toLowerCase()){
             case "chrome":
                 driverManagerType = DriverManagerType.CHROME;
-                WebDriverManager.getInstance(driverManagerType).setup();
+                //WebDriverManager.getInstance(driverManagerType).setup();
+                WebDriverManager.chromedriver().driverVersion("114.0.5735.90").setup();
                 driver = new ChromeDriver(getChromeOptions());
                 break;
             case "firefox":
@@ -37,7 +38,8 @@ public class BrowserFactory {
         driver.manage().window().maximize(); // принудительное развертывание окна браузера на макс
         // driver.manage().window().fullscreen(); // исчезают все эл-ты управления
         driver.manage().deleteAllCookies();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
         return this.driver;
     }
 
