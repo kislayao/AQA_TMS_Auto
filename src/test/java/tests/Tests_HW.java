@@ -55,7 +55,7 @@ public class Tests_HW extends BaseTest {
         WaitService waitService = new WaitService(driver);
 
         WebElement fileUploadElement = waitService.waitForExists(By.xpath("//form/input[@type='file']"));
-        String pathToFile = ActionTests.class.getClassLoader().getResource("download.jpeg").getPath();
+        String pathToFile = Tests_HW.class.getClassLoader().getResource("download.jpeg").getPath();
         //System.out.println("path:" + pathToFile.substring(1,pathToFile.length()));
         fileUploadElement.sendKeys(pathToFile.substring(1,pathToFile.length()));
         waitService.waitForVisibilityLocatedBy(By.id("file-submit")).submit();
