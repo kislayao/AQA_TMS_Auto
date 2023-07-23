@@ -3,6 +3,7 @@ package tests;
 import baseEntities.BaseTest;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -57,7 +58,12 @@ public class Tests_HW extends BaseTest {
         WebElement fileUploadElement = waitService.waitForExists(By.xpath("//form/input[@type='file']"));
         String pathToFile = Tests_HW.class.getClassLoader().getResource("download.jpeg").getPath();
         //System.out.println("path:" + pathToFile.substring(1,pathToFile.length()));
-        fileUploadElement.sendKeys(pathToFile.substring(1,pathToFile.length()));
+        try {
+            fileUploadElement.sendKeys(pathToFile.substring(1,pathToFile.length()));
+        } catch (NoSuchElementException e){
+            System.out.println("File is not found");
+        }
+
         waitService.waitForVisibilityLocatedBy(By.id("file-submit")).submit();
         Assert.assertTrue(waitService.waitForVisibilityLocatedBy
                 (By.xpath("//*[@id = 'uploaded-files' and contains(text(), 'download.jpeg')]")).isDisplayed());
