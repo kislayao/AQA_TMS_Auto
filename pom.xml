@@ -8,35 +8,43 @@
     <artifactId>AQA_TMS_Auto</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties>
+    <properties> <!-- позволяет создать переменные с тестовым значением  -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.5</aspectj.version>
+        <testng.version>7.7.1</testng.version>
+        <selenium-java.version>4.10.0</selenium-java.version>
+        <webdrivermanager.version>5.4.0</webdrivermanager.version>
+        <testng.xml.path>src/test/resources/smoke.xml</testng.xml.path>
     </properties>
 
     <dependencies> <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.7.1</version>
+            <version>${testng.version}</version>
+            <!--  <scope>test</scope> распространяется только на попку тест и не виден в main -->
         </dependency>
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.10.0</version>
+            <version>${selenium-java.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>5.4.0</version>
+            <version>${webdrivermanager.version}</version>
         </dependency>
 
     </dependencies>
 
     <build>
+        <!--sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory -->
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -47,8 +55,10 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <!--suiteXmlFiles>
-                        <suiteXmlFile>target/test-classes/general.xml</suiteXmlFile>
-                    </suiteXmlFiles-->
+                        <suiteXmlFile>${testng.xml.path}</suiteXmlFile>
+                    </suiteXmlFiles -->
+
+                    <forkCount>5</forkCount>
                 </configuration>
                 <dependencies>
 
