@@ -9,14 +9,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import utils.configuration.ReadProperties;
 
-import java.time.Duration;
-
 public class BrowserFactory {
     private WebDriver driver = null;
     private DriverManagerType driverManagerType = null;
-    public BrowserFactory(){
 
-        switch (ReadProperties.browserName().toLowerCase()){
+    public BrowserFactory() {
+
+        switch (ReadProperties.browserName().toLowerCase()) {
             case "chrome":
                 driverManagerType = DriverManagerType.CHROME;
                 //WebDriverManager.getInstance(driverManagerType).setup();
@@ -34,7 +33,7 @@ public class BrowserFactory {
         }
     }
 
-    public WebDriver getDriver(){
+    public WebDriver getDriver() {
         driver.manage().window().maximize(); // принудительное развертывание окна браузера на макс
         // driver.manage().window().fullscreen(); // исчезают все эл-ты управления
         driver.manage().deleteAllCookies();
@@ -56,6 +55,7 @@ public class BrowserFactory {
 
         return chromeOptions;
     }
+
     public FirefoxOptions getFirefoxOptions() {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setHeadless(false);
