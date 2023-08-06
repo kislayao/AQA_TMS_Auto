@@ -2,7 +2,7 @@ package pages;
 
 import baseEntities.BasePage;
 import elements.Checkbox;
-import elements.Table;
+import elements.RadioButton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -11,7 +11,8 @@ public class AddProjectPage extends BasePage {
 
     // Блок описания локаторов для элементов
     private final By headerTitleLabelLocator = By.className("page_title");
-    private final By projectsCheckboxLocator = By.cssSelector("#show_announcement");
+    private final By addProjectCheckboxLocator = By.cssSelector("#show_announcement");
+    private final By addProjectRadioButtonLocator = By.cssSelector(".add-project-row");
 
     public AddProjectPage(WebDriver driver) {
         super(driver);
@@ -26,7 +27,11 @@ public class AddProjectPage extends BasePage {
         super.openPageByUrl(pagePath);
     }
 
-    public Checkbox getAddProjectsCheckbox() {
-        return new Checkbox (driver, projectsCheckboxLocator);
+    public Checkbox getAddProjectCheckbox() {
+        return new Checkbox (driver, addProjectCheckboxLocator);
+    }
+
+    public RadioButton getAddProjectRadioButton(){
+        return new RadioButton(driver, addProjectRadioButtonLocator);
     }
 }
