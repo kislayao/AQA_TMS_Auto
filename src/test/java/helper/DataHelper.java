@@ -1,15 +1,19 @@
 package helper;
 
+import lombok.extern.slf4j.Slf4j;
 import models.User;
 import models.UserData;
 import utils.configuration.ReadProperties;
 
+@Slf4j
 public class DataHelper {
 
     public static User getStandardUser() {
         User user = new User();
         user.setUserName(ReadProperties.standardUserName());
         user.setPassword(ReadProperties.generalPassword());
+
+        log.info(user.toString());
         return user;
     }
 
@@ -35,10 +39,10 @@ public class DataHelper {
     }
 
     public static UserData getCommonUserData(){
-        UserData userData = new UserData.Builder()
-                .withFirstName("Mishka")
-                .withLastName("Kot")
-                .withPostalCode(234)
+        UserData userData = UserData.builder()
+                .firstName("Mishka")
+                .lastName("Kot")
+                .postalCode(234)
                 .build();
 
         return userData;
