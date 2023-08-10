@@ -1,19 +1,22 @@
 package helper;
 
-import lombok.extern.slf4j.Slf4j;
 import models.User;
 import models.UserData;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import utils.configuration.ReadProperties;
 
-@Slf4j
+
 public class DataHelper {
+
+    static Logger logger = LogManager.getLogger(DataHelper.class);
 
     public static User getStandardUser() {
         User user = new User();
         user.setUserName(ReadProperties.standardUserName());
         user.setPassword(ReadProperties.generalPassword());
 
-        log.info(user.toString());
+        logger.info(user.toString());
         return user;
     }
 
@@ -21,6 +24,8 @@ public class DataHelper {
         User user = new User();
         user.setUserName(ReadProperties.lockedOutUserName());
         user.setPassword(ReadProperties.generalPassword());
+
+        logger.info(user.toString());
         return user;
     }
 
@@ -28,6 +33,8 @@ public class DataHelper {
         User user = new User();
         user.setUserName(ReadProperties.problemUserName());
         user.setPassword(ReadProperties.generalPassword());
+
+        logger.info(user.toString());
         return user;
     }
 
@@ -35,6 +42,8 @@ public class DataHelper {
         User user = new User();
         user.setUserName(ReadProperties.performanceGlitchUserName());
         user.setPassword(ReadProperties.generalPassword());
+
+        logger.info(user.toString());
         return user;
     }
 
@@ -45,6 +54,7 @@ public class DataHelper {
                 .postalCode(234)
                 .build();
 
+        logger.info(userData.toString());
         return userData;
     }
 }
