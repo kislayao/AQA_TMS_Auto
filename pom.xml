@@ -5,47 +5,58 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>AQA_TMS_Auto</artifactId>
+    <artifactId>AQA21onl</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <properties> <!-- позволяет создать переменные с тестовым значением  -->
-        <maven.compiler.source>11</maven.compiler.source>
+    <properties>
         <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.5</aspectj.version>
         <testng.version>7.7.1</testng.version>
         <selenium-java.version>4.10.0</selenium-java.version>
-        <webdrivermanager.version>5.4.0</webdrivermanager.version>
+        <webdrivermanager.version>5.4.1</webdrivermanager.version>
         <testng.xml.path>src/test/resources/smoke.xml</testng.xml.path>
     </properties>
 
-    <dependencies> <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.testng/testng -->
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <!--  <scope>test</scope> распространяется только на попку тест и не виден в main -->
+            <!--scope>test</scope-->
         </dependency>
 
         <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium-java.version}</version>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
         </dependency>
 
         <dependency>
-            <groupId>io.github.bonigarcia</groupId>
-            <artifactId>webdrivermanager</artifactId>
-            <version>${webdrivermanager.version}</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>2.0.3</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-testng -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>6.17.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>2.23.0</version>
+        </dependency>
+
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>2.23.0</version>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -58,6 +69,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
+                    <!--suiteXmlFiles>
+                        <suiteXmlFile>target/test-classes/general.xml</suiteXmlFile>
+                    </suiteXmlFiles-->
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -68,9 +82,18 @@
                 </dependencies>
             </plugin>
             <plugin>
-                <groupId>io.qameta.allure</groupId>
-                <artifactId>allure-maven</artifactId>
-                <version>2.10.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.28</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
         </plugins>
     </build>

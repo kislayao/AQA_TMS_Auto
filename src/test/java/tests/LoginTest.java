@@ -1,8 +1,8 @@
 package tests;
 
 import baseEntities.BaseTest;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
+import helper.DataHelper;
+import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.configuration.ReadProperties;
@@ -11,33 +11,30 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void successLoginTest() {
-        Assert.assertFalse(
-                loginStep.successLogin(
-                                ReadProperties.username(),
-                                ReadProperties.password()
-                        )
-                        .isPageOpened()
-        );
+        loginStep.successLogin(DataHelper.getAdminUser()).isPageOpened();
     }
 
     @Test
     public void incorrectEmailLoginTest() {
+        User user = new User();
+        user.setEmail("asdasd");
+        user.setPassword(ReadProperties.password());
+
         Assert.assertEquals(
-                loginStep.negativeLogin("sdsd", ReadProperties.password()).getErrorTextElement().getText(),
-                "Email/Login or Password is incorrect. Please try again.",
-                "Неверное сообщение об ошибке");
+                loginStep.negativeLogin(user).getErrorTextElement().getText(),
+                "Email/Login or Password is incorrect. Please try again."
+        );
     }
 
     @Test
     public void incorrectPswLoginTest() {
+        User user = new User();
+        user.setEmail(ReadProperties.username());
+        user.setPassword("123456");
+
         Assert.assertEquals(
-                loginStep.negativeLogin(ReadProperties.username(), "123").getErrorTextElement().getText(),
+                loginStep.negativeLogin(user).getErrorTextElement().getText(),
                 "Email/Login or Password is incorrect. Please try again.",
                 "Неверное сообщение об ошибке");
-    }
-
-    @Test
-    public void screenShotTest() {
-        Assert.assertTrue(false);
     }
 }

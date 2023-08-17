@@ -16,8 +16,8 @@ public class UIElement implements WebElement {
         this.driver = driver;
         this.by = by;
         this.waitService = new WaitService(driver);
-        //this.webElement = driver.findElement(by); // implicitly wait
-        this.webElement = waitService.waitForExists(by); // explicitly wait
+        //this.webElement = driver.findElement(by);
+        this.webElement = waitService.waitForExists(by);
     }
 
     public UIElement(WebDriver driver, WebElement webElement) {
@@ -25,7 +25,6 @@ public class UIElement implements WebElement {
         this.webElement = webElement;
         this.waitService = new WaitService(driver);
     }
-
 
     @Override
     public void click() {
@@ -83,6 +82,10 @@ public class UIElement implements WebElement {
         return webElement.findElements(by);
     }
 
+    public UIElement findUIElement(By by) {
+        return new UIElement(driver, webElement.findElement(by));
+    }
+
     public List<UIElement> findUIElements(By by) {
         ArrayList<UIElement> list = new ArrayList<>();
         for (WebElement element : webElement.findElements(by)) {
@@ -130,4 +133,7 @@ public class UIElement implements WebElement {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true)", webElement);
     }
 
+    public WebElement getWebElement() {
+        return webElement;
+    }
 }
