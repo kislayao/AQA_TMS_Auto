@@ -5,7 +5,6 @@ import com.codeborne.selenide.WebDriverRunner;
 import elements.CheckBox;
 import elements.RadioButton;
 import elements.UIElement;
-import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
