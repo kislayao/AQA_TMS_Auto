@@ -1,9 +1,12 @@
 package pages;
 
 import baseEntities.BasePage_HW;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class CheckoutOverviewPage_HW extends BasePage_HW {
 
@@ -16,8 +19,8 @@ public class CheckoutOverviewPage_HW extends BasePage_HW {
 
     // Блок инициализации
 
-    public CheckoutOverviewPage_HW(WebDriver driver) {
-        super(driver);
+    public CheckoutOverviewPage_HW() {
+        super();
     }
 
     @Override
@@ -27,8 +30,8 @@ public class CheckoutOverviewPage_HW extends BasePage_HW {
 
     // Блок атомарных методов
 
-    public WebElement getFinishButton() {
-        return driver.findElement(finishButtonLocator);
+    public SelenideElement getFinishButton() {
+        return $(finishButtonLocator);
     }
 
 }

@@ -1,30 +1,38 @@
 package tests;
 
 import baseEntities.BaseTest_HW;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
+import helper.DataHelper;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.configuration.ReadProperties;
+
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.open;
 
 public class E2ETest_HW extends BaseTest_HW {
 
 
     @Test
     public void E2ETest() {
-        Assert.assertTrue(
-                loginStep_HW.successLogin_HW(
-                        ReadProperties.usernameHW(), ReadProperties.passwordHW()
-                ).isPageOpened()
 
-        );
-        Assert.assertTrue(productsStep_HW.addToCart_HW().isPageOpened());
-        Assert.assertTrue(productsStep_HW.removeButtonIsDisplayed().isPageOpened());
-        Assert.assertTrue(productsStep_HW.openCart_HW().isPageOpened());
-        Assert.assertTrue(cartStep_HW.checkProductIsInTheCart());
-        Assert.assertTrue(cartStep_HW.checkout_HW().isPageOpened());
-        Assert.assertTrue(checkoutYourInformationStep_HW.fillingInWithValidData_HW().isPageOpened());
-        Assert.assertTrue(checkoutYourInformationStep_HW.continueCheckout().isPageOpened());
-        Assert.assertTrue(checkoutOverviewStep_HW.checkProductIsInTheOverview());
-        Assert.assertTrue(checkoutOverviewStep_HW.finishCheckout().isPageOpened());
+        open(ReadProperties.getUrlHW());
+        loginStep_HW.successLogin_HW(DataHelper.getStandardUser()).isPageOpened();
+        productsStep_HW.addToCart_HW();
+        productsStep_HW.removeButtonIsDisplayed();
+        productsStep_HW.openCart_HW().isPageOpened();
+        cartStep_HW.checkProductIsInTheCart();
+        cartStep_HW.checkout_HW().isPageOpened();
+        checkoutYourInformationStep_HW.fillingInWithValidData_HW(DataHelper.getCommonUserData());
+        checkoutYourInformationStep_HW.continueCheckout().isPageOpened();
+        checkoutOverviewStep_HW.checkProductIsInTheOverview();
+        checkoutOverviewStep_HW.finishCheckout().isPageOpened();
 
     }
 }

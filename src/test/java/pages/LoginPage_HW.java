@@ -1,9 +1,14 @@
 package pages;
 
 import baseEntities.BasePage_HW;
+import com.codeborne.selenide.SelenideElement;
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class LoginPage_HW extends BasePage_HW {
 
@@ -13,8 +18,8 @@ public class LoginPage_HW extends BasePage_HW {
     private final By loginButtonLocator = By.id("login-button");
 
     // Блок инициализации
-    public LoginPage_HW(WebDriver driver) {
-        super(driver);
+    public LoginPage_HW() {
+        super();
     }
 
     @Override
@@ -24,23 +29,27 @@ public class LoginPage_HW extends BasePage_HW {
 
     // Блок атомарных методов
 
-    public WebElement getUserNameInput() {
-        return driver.findElement(userNameInputLocator);
+    public SelenideElement getUserNameInput() {
+        return $(userNameInputLocator);
     }
 
-    public WebElement getPswInput() {
-        return driver.findElement(pswInputLocator);
+    public SelenideElement getPswInput() {
+        return $(pswInputLocator);
     }
 
-    public WebElement getLoginButton() {
-        return driver.findElement(loginButtonLocator);
+    public SelenideElement getLoginButton() {
+        return $(loginButtonLocator);
     }
 
     // Блок комплексных методов
-    public void login_HW(String usernameHW, String pswHW) {
-        getUserNameInput().sendKeys(usernameHW);
-        getPswInput().sendKeys(pswHW);
+
+    public void login_HW(User user) {
+        getUserNameInput().setValue(user.getUserName()).pressTab();
+        sleep(5000);
+        getPswInput().sendKeys(user.getPassword());
+        sleep(5000);
         getLoginButton().click();
+
     }
 
 }
