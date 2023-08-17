@@ -44,12 +44,9 @@ public class LoginPage_HW extends BasePage_HW {
     // Блок комплексных методов
 
     public void login_HW(User user) {
-        getUserNameInput().setValue(user.getUserName()).pressTab();
-        sleep(5000);
+        getUserNameInput().sendKeys(user.getUserName());
         getPswInput().sendKeys(user.getPassword());
-        sleep(5000);
         getLoginButton().click();
-
     }
 
 }

@@ -13,8 +13,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class E2ETest_HW extends BaseTest_HW {
 
@@ -33,6 +32,23 @@ public class E2ETest_HW extends BaseTest_HW {
         checkoutYourInformationStep_HW.continueCheckout().isPageOpened();
         checkoutOverviewStep_HW.checkProductIsInTheOverview();
         checkoutOverviewStep_HW.finishCheckout().isPageOpened();
+
+//        $(By.id("user-name")).val(ReadProperties.standardUserName());
+//        $(By.id("user-name")).sendKeys("standard_user");
+//        sleep(5000);
+//        $("#password").val(ReadProperties.generalPassword());
+//        sleep(5000);
+//        $("#login-button").click();
+//        sleep(5000);
+
+
+
+//        open(ReadProperties.getUrl());
+//        $(By.id("name")).setValue(ReadProperties.username()).pressTab();
+//        $("#password").val(ReadProperties.password());
+//        $("#button_primary").click();
+
+
 
     }
 }
