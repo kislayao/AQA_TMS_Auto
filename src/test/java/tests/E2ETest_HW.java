@@ -33,22 +33,5 @@ public class E2ETest_HW extends BaseTest_HW {
         checkoutOverviewStep_HW.checkProductIsInTheOverview();
         checkoutOverviewStep_HW.finishCheckout().isPageOpened();
 
-//        $(By.id("user-name")).val(ReadProperties.standardUserName());
-//        $(By.id("user-name")).sendKeys("standard_user");
-//        sleep(5000);
-//        $("#password").val(ReadProperties.generalPassword());
-//        sleep(5000);
-//        $("#login-button").click();
-//        sleep(5000);
-
-
-
-//        open(ReadProperties.getUrl());
-//        $(By.id("name")).setValue(ReadProperties.username()).pressTab();
-//        $("#password").val(ReadProperties.password());
-//        $("#button_primary").click();
-
-
-
     }
 }
