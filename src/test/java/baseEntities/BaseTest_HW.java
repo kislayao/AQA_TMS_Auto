@@ -47,6 +47,7 @@ public class BaseTest_HW {
         checkoutCompleteStep_HW = new CheckoutCompleteStep_HW();
 
         //open("/");
+        open(ReadProperties.getUrlHW());
 
         //logger.info("Browser is started");
     }

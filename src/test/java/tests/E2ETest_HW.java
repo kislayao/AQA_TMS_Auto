@@ -21,7 +21,6 @@ public class E2ETest_HW extends BaseTest_HW {
     @Test
     public void E2ETest() {
 
-        open(ReadProperties.getUrlHW());
         loginStep_HW.successLogin_HW(DataHelper.getStandardUser()).isPageOpened();
         productsStep_HW.addToCart_HW();
         productsStep_HW.removeButtonIsDisplayed();
