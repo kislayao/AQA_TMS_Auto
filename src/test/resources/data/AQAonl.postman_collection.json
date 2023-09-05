@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "883642a9-71cb-4ff6-b667-48049bffe0fe",
+		"name": "AQAonl",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9983772"
+	},
+	"item": [
+		{
+			"name": "TestRail",
+			"item": [
+				{
+					"name": "Milestones",
+					"item": [
+						{
+							"name": "Add milestone",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"milestone_id\", jsonData.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Test milestone\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/add_milestone/{{project_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/add_milestone/{{project_id}}",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get milestone",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/get_milestone/{{milestone_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/get_milestone/{{milestone_id}}",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update milestone",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"is_completed\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/update_milestone/{{milestone_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/update_milestone/{{milestone_id}}",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete milestone",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/delete_milestone/{{milestone_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/delete_milestone/{{milestone_id}}",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ClassWork",
+					"item": [
+						{
+							"name": "Get all users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/get_users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/get_users",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add project",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Project 78\",\r\n    \"announcement\": \"Welcome to project X\",\r\n    \"show_announcement\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/add_project",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/add_project",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get project",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/index.php?/api/v2/get_project/{{project_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"index.php"
+									],
+									"query": [
+										{
+											"key": "/api/v2/get_project/{{project_id}}",
+											"value": null
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "{{password}}",
+						"type": "string"
+					},
+					{
+						"key": "username",
+						"value": "{{login}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
