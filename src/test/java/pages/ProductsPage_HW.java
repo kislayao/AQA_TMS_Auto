@@ -1,9 +1,12 @@
 package pages;
 
 import baseEntities.BasePage_HW;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class ProductsPage_HW extends BasePage_HW {
 
@@ -19,10 +22,10 @@ public class ProductsPage_HW extends BasePage_HW {
     private final By itemTitleLocator = By.id("shopping_cart_container");
 
     // Блок инициализации
-    public ProductsPage_HW(WebDriver driver) {
-        super(driver);
+    public ProductsPage_HW() {
+        super();
 
-        cartPage_HW = new CartPage_HW(driver);
+        cartPage_HW = new CartPage_HW();
     }
 
     @Override
@@ -32,20 +35,20 @@ public class ProductsPage_HW extends BasePage_HW {
 
     // Блок атомарных методов
 
-    public WebElement getAddToCartButton() {
-        return driver.findElement(addToCartButtonLocator);
+    public SelenideElement getAddToCartButton() {
+        return $(addToCartButtonLocator);
     }
 
-    public WebElement getRemoveFromCartButton() {
-        return driver.findElement(removeFromCartButtonLocator);
+    public SelenideElement getRemoveFromCartButton() {
+        return $(removeFromCartButtonLocator);
     }
 
-    public WebElement getOpenCartButton() {
-        return driver.findElement(openCartButtonLocator);
+    public SelenideElement getOpenCartButton() {
+        return $(openCartButtonLocator);
     }
 
-    public WebElement getItemTitle() {
-        return driver.findElement(itemTitleLocator);
+    public SelenideElement getItemTitle() {
+        return $(itemTitleLocator);
     }
 
 }

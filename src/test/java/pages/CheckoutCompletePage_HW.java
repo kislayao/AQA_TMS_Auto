@@ -13,8 +13,8 @@ public class CheckoutCompletePage_HW extends BasePage_HW {
 
     // Блок инициализации
 
-    public CheckoutCompletePage_HW(WebDriver driver) {
-        super(driver);
+    public CheckoutCompletePage_HW() {
+        super();
     }
 
     @Override

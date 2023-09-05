@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 
 public class CheckoutCompleteStep_HW extends BaseStep_HW {
 
-    public CheckoutCompleteStep_HW(WebDriver driver) {
-        super(driver);
+    public CheckoutCompleteStep_HW() {
+        super();
     }
 
 }

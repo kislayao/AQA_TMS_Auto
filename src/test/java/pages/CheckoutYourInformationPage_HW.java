@@ -1,9 +1,13 @@
 package pages;
 
 import baseEntities.BasePage_HW;
+import com.codeborne.selenide.SelenideElement;
+import models.UserData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class CheckoutYourInformationPage_HW extends BasePage_HW {
 
@@ -21,8 +25,8 @@ public class CheckoutYourInformationPage_HW extends BasePage_HW {
 
     // Блок инициализации
 
-    public CheckoutYourInformationPage_HW(WebDriver driver) {
-        super(driver);
+    public CheckoutYourInformationPage_HW() {
+        super();
     }
 
     @Override
@@ -32,20 +36,20 @@ public class CheckoutYourInformationPage_HW extends BasePage_HW {
 
     // Блок атомарных методов
 
-    public WebElement getFirstNameInput() {
-        return driver.findElement(firstNameInputLocator);
+    public SelenideElement getFirstNameInput() {
+        return $(firstNameInputLocator);
     }
 
-    public WebElement getLastNameInput() {
-        return driver.findElement(lastNameInputLocator);
+    public SelenideElement getLastNameInput() {
+        return $(lastNameInputLocator);
     }
 
-    public WebElement getPostalCodeInput() {
-        return driver.findElement(postalCodeInputLocator);
+    public SelenideElement getPostalCodeInput() {
+        return $(postalCodeInputLocator);
     }
 
-    public WebElement getContinueButton() {
-        return driver.findElement(continueButtonLocator);
+    public SelenideElement getContinueButton() {
+        return $(continueButtonLocator);
     }
 
     public void setFirstName(String value) {
@@ -56,14 +60,14 @@ public class CheckoutYourInformationPage_HW extends BasePage_HW {
         getLastNameInput().sendKeys(value);
     }
 
-    public void setPostalCode(String value) {
-        getPostalCodeInput().sendKeys(value);
+    public void setPostalCode(int value) {
+        getPostalCodeInput().sendKeys(String.valueOf(value));
     }
 
-    public void fillInYourInfoData() {
-        setFirstName("testFirstName");
-        setLastName("testLastName");
-        setPostalCode("123");
+    public void fillInYourInfoData (UserData userData) {
+        setFirstName(userData.getFirstName());
+        setLastName(userData.getLastName());
+        setPostalCode(userData.getPostalCode());
     }
 
 }
