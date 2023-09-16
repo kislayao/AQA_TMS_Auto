@@ -134,8 +134,6 @@ public class CasesTests extends BaseApiTest {
     @Test(priority = 4)
     public void deleteCaseTest() {
 
-        Gson gson = new Gson();
-
         Response response = given()
                 .pathParam("case_id", case_id)
                 .when()
