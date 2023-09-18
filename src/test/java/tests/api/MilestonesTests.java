@@ -4,51 +4,31 @@ import baseEntities.BaseApiTest;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import models.Milestone;
-import models.Project;
 import org.apache.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
 import utils.Endpoints;
-import static org.hamcrest.Matchers.*;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.is;
 
 public class MilestonesTests extends BaseApiTest {
 
     static Logger logger = LogManager.getLogger(MilestonesTests.class);
     private int milestone_id;
 
-    @Test (priority = 1)
+    @Test
     public void addMilestoneTest() {
 
-        String endpoint = "/index.php?/api/v2/add_project";
-
-        Project expectedProject = Project.builder()
-                .projectName("New test project")
-                .announcement("Random test description")
-                .projectType(1)
-                .flag(true)
-                .build();
-
-        Response response_project = given()
-                .body(expectedProject, ObjectMapperType.GSON)
-                .log().all()
-                .when()
-                .post(endpoint)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .response();
-
-        int project_id = response_project.getBody().jsonPath().getInt("id");
+        ProjectTests expectedProject = new ProjectTests();
+        expectedProject.addProjectTest();
 
         Milestone expectedMilestone = new Milestone();
         expectedMilestone.setName("test milestone");
 
         Response response_milestone = given()
-                .pathParam("project_id",project_id)
+                .pathParam("project_id", expectedProject.getProject_id())
                 .body(expectedMilestone, ObjectMapperType.GSON)
                 .log().all()
                 .when()
@@ -56,7 +36,7 @@ public class MilestonesTests extends BaseApiTest {
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_OK)
-                .body("name", is(expectedMilestone.getName()) )
+                .body("name", is(expectedMilestone.getName()))
                 .extract()
                 .response();
 
@@ -65,8 +45,10 @@ public class MilestonesTests extends BaseApiTest {
 
     }
 
-    @Test (priority = 2)
+    @Test
     public void getMilestoneTest() {
+
+        addMilestoneTest();
 
         Response response_milestone = given()
                 .pathParam("milestone_id", milestone_id)
@@ -81,8 +63,10 @@ public class MilestonesTests extends BaseApiTest {
 
     }
 
-    @Test (priority = 3)
+    @Test
     public void updateMilestoneTest() {
+
+        getMilestoneTest();
 
         Milestone expectedMilestone = new Milestone();
         expectedMilestone.setDescription("New desc");
@@ -96,13 +80,15 @@ public class MilestonesTests extends BaseApiTest {
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_OK)
-                .body("description", is(expectedMilestone.getDescription()) )
+                .body("description", is(expectedMilestone.getDescription()))
                 .extract()
                 .response();
     }
 
-    @Test (priority = 4)
+    @Test
     public void deleteMilestoneTest() {
+
+        getMilestoneTest();
 
         Response response_milestone = given()
                 .pathParam("milestone_id", milestone_id)
