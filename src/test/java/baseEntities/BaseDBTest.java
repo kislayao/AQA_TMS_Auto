@@ -8,7 +8,7 @@ public class BaseDBTest {
     protected DataBaseService dataBaseService;
 
     @BeforeTest
-    public void setupConnectuion() {
+    public void setupConnection() {
         dataBaseService = new DataBaseService();
     }
 

@@ -8,6 +8,7 @@ import org.apache.http.HttpStatus;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
+import services.MilestoneService;
 import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
@@ -17,6 +18,7 @@ public class MilestonesTests extends BaseApiTest {
 
     static Logger logger = LogManager.getLogger(MilestonesTests.class);
     private int milestone_id;
+    private Milestone expectedMilestone;
 
     @Test
     public void addMilestoneTest() {
@@ -24,8 +26,8 @@ public class MilestonesTests extends BaseApiTest {
         ProjectTests expectedProject = new ProjectTests();
         expectedProject.addProjectTest();
 
-        Milestone expectedMilestone = new Milestone();
-        expectedMilestone.setName("test milestone");
+        MilestoneService milestoneService = new MilestoneService();
+        expectedMilestone = milestoneService.findAllMilestones().get(1);
 
         Response response_milestone = given()
                 .pathParam("project_id", expectedProject.getProject_id())
@@ -68,8 +70,9 @@ public class MilestonesTests extends BaseApiTest {
 
         getMilestoneTest();
 
-        Milestone expectedMilestone = new Milestone();
-        expectedMilestone.setDescription("New desc");
+        MilestoneService milestoneService = new MilestoneService();
+        expectedMilestone.setDescription("New desc The Newest");
+        milestoneService.updateMilestone(expectedMilestone);
 
         Response response_milestone = given()
                 .body(expectedMilestone, ObjectMapperType.GSON)

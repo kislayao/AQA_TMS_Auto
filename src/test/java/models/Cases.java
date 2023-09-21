@@ -1,19 +1,30 @@
 package models;
 
 import com.google.gson.annotations.SerializedName;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+
+import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 @Builder
+@Table(name = "Cases")
 public class Cases {
-
-    @SerializedName(value = "title")
-    private String caseTitle;
 
     @SerializedName(value = "id")
     @EqualsAndHashCode.Exclude
-    private String caseId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int caseId;
 
+    @SerializedName(value = "title")
+    @Column(name = "Title")
+    private String caseTitle;
+
+    public Cases(String title) {
+        this.caseTitle = title;
+    }
 }
