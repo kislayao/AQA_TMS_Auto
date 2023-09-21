@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import services.CasesService;
 import utils.Endpoints;
 
 import static io.restassured.RestAssured.given;
@@ -19,6 +20,7 @@ public class CasesTests extends BaseApiTest {
     static Logger logger = LogManager.getLogger(CasesTests.class);
     private int case_id;
     private Cases actualCase;
+    private Cases expectedCase;
 
     @Test
     public void addCaseTest() {
@@ -28,9 +30,8 @@ public class CasesTests extends BaseApiTest {
 
         Gson gson = new Gson();
 
-        Cases expectedCase = Cases.builder()
-                .caseTitle("Random Case Title")
-                .build();
+        CasesService casesService = new CasesService();
+        expectedCase = casesService.findAllCases().get(0);
 
         Response response = given()
                 .pathParam("section_id", expectedSection.getSection_id())
@@ -77,13 +78,12 @@ public class CasesTests extends BaseApiTest {
 
         Gson gson = new Gson();
 
-        Cases infoToUpdateCase = Cases.builder()
-                .caseTitle("New Case Title")
-                .build();
+        CasesService casesService = new CasesService();
+        expectedCase = casesService.findAllCases().get(1);
 
         Response response = given()
                 .pathParam("case_id", case_id)
-                .body(infoToUpdateCase, ObjectMapperType.GSON)
+                .body(expectedCase, ObjectMapperType.GSON)
                 .post(Endpoints.UPDATE_CASE)
                 .then()
                 .log().body()
@@ -93,7 +93,7 @@ public class CasesTests extends BaseApiTest {
 
         Cases updatedCase = gson.fromJson(response.getBody().asString(), Cases.class);
         System.out.println(updatedCase.toString());
-        Assert.assertTrue(infoToUpdateCase.equals(updatedCase));
+        Assert.assertTrue(expectedCase.equals(updatedCase));
     }
 
     @Test
